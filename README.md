@@ -11,3 +11,6 @@ yarn dev
 Vous pouvez créer vos propres identifiants, mais de base : 
 - FrancisHuster : password
 - JohnBob : password
+
+
+# Reprise d'un projet en react afin pour utiliser axios au lieu de fetch pour se log
