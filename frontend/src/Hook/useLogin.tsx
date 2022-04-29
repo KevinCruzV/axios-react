@@ -11,6 +11,6 @@ export default function useLogin() {
                 Authorization: `Basic ${btoa(username + ':' + password)}`
             }
         })
-            .then(res => res.text())
+            .then(res => res.json())
     }
 }
