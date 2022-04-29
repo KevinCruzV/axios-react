@@ -46,7 +46,12 @@ export default function App() {
         if (needsLogin && localUser.username !== '') {
             console.log('login ?')
             login(localUser.username, localUser.password)
-                .then(data => setLoggedUser(data))
+                //
+                .then(data => {
+                    console.log(data)
+                    //setLoggedUser(data)
+                })
+
         } else if (!needsLogin && localUser.username !== '') {
             console.log('register ?', localUser.username)
             register(localUser.username, localUser.password)

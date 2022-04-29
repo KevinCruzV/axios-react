@@ -1,0 +1,11 @@
+{
+    "require": {
+        "spomky-labs/jose": "^7.1",
+        "firebase/php-jwt": "^6.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "./src"
+        }
+    }
+}

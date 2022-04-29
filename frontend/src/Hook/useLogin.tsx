@@ -1,5 +1,6 @@
 import {LoginResponseInterface} from "../Interface/ResponsesInterfaces";
 
+
 export default function useLogin() {
     return (username: string, password: string): Promise<LoginResponseInterface> => {
         return fetch('http://localhost:2345/login.php', {
@@ -10,6 +11,6 @@ export default function useLogin() {
                 Authorization: `Basic ${btoa(username + ':' + password)}`
             }
         })
-            .then(res => res.json())
+            .then(res => res.text())
     }
 }

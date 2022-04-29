@@ -3,6 +3,16 @@
   <component name="PhpIncludePathManager">
     <include_path>
       <path value="$PROJECT_DIR$/app/vendor/composer" />
+      <path value="$PROJECT_DIR$/app/vendor/beberlei/assert" />
+      <path value="$PROJECT_DIR$/app/vendor/spomky-labs/jose" />
+      <path value="$PROJECT_DIR$/app/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/app/vendor/spomky-labs/base64url" />
+      <path value="$PROJECT_DIR$/app/vendor/mdanter/ecc" />
+      <path value="$PROJECT_DIR$/app/vendor/spomky-labs/aes-key-wrap" />
+      <path value="$PROJECT_DIR$/app/vendor/fgrosse/phpasn1" />
+      <path value="$PROJECT_DIR$/app/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/app/vendor/spomky-labs/php-aes-gcm" />
+      <path value="$PROJECT_DIR$/app/vendor/psr/cache" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

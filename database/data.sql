@@ -46,17 +46,16 @@ CREATE TABLE `Blog` (
 CREATE TABLE `User` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `User`
 --
 
-INSERT INTO `User` (`id`, `username`, `password`, `token`) VALUES
-(1, 'FrancisHuster', '$2y$10$kgElSKkY9xgITrnfaAZLAee.5/JgHL9aRM3iZg27ShpOBsRA.h.Z.', 'aa25fd1453266220bc138fa3b033330f6d44129041129bc1c6e7f9a810529e527d2931ec13a068e65dff878a283ff4d5ff52'),
-(2, 'JohnBob', '$2y$10$4/1Iqkb/mbMB4wr9YOnkfegeRKszIPiSzVJ2Ik4G5kDPyjgsgQrI2', 'aff9e23e242cbb759bd14a97fdd720c7d38b23064c1757837515f55c61dd7e15231f77155c64cd9511c80125af5fc97f30e3');
+INSERT INTO `User` (`id`, `username`, `password`) VALUES
+(1, 'FrancisHuster', '$2y$10$kgElSKkY9xgITrnfaAZLAee.5/JgHL9aRM3iZg27ShpOBsRA.h.Z.'),
+(2, 'JohnBob', '$2y$10$4/1Iqkb/mbMB4wr9YOnkfegeRKszIPiSzVJ2Ik4G5kDPyjgsgQrI2');
 
 --
 -- Index pour les tables déchargées
