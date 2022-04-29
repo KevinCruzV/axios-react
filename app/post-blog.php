@@ -1,10 +1,12 @@
 <?php
 
+use Firebase\JWT\JWT;
+
 require_once 'headers.php';
 require_once 'Classes/PDOFactory.php';
 require_once 'Classes/User.php';
 require_once 'Classes/Blog.php';
-require_once  'vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 $token = str_replace('Bearer ', '', getallheaders()['Authorization'] ?? '') ?? '';
 
@@ -37,11 +39,13 @@ if (!$blogContent || !$blogTitle) {
 }
 
 
-$pdo = new PDOFactory();
-$pdo->getPdo();
+$InstancePdo = new PDOFactory();
+$pdo = $InstancePdo->getPdo();
 
 try {
 
+
+    $jwt = JWT::decode($token,new \Firebase\JWT\Key('une_petite_key_secrete', 'HS256'));
 
 
 
@@ -49,12 +53,12 @@ try {
     $blog = (new Blog())
         ->setTitle($blogTitle)
         ->setContent($blogContent)
-        ->setAuthorId($user->getId());
+        ->setAuthorId($jwt->userid);
 
     $update = $pdo->prepare('INSERT INTO Blog (title, content, authorId, date) VALUES (:title, :content, :authorId, NOW())');
     $update->bindValue('title', $blog->getTitle(), PDO::PARAM_STR);
     $update->bindValue('content', $blog->getContent(), PDO::PARAM_STR);
-    $update->bindValue('authorId', $user->getId(), PDO::PARAM_INT);
+    $update->bindValue('authorId', $jwt->userid, PDO::PARAM_INT);
 
     if ($update->execute()) {
         echo json_encode([
@@ -63,30 +67,20 @@ try {
             'cookie' => $_COOKIE['hetic_token'] ?? 'expired cookie'
         ]);
     }
+
+
+
+}
+catch (\Firebase\JWT\ExpiredException $e) {
+    echo json_encode([
+        'status' => 'error',
+        'message' => 'Le token est expiré'
+    ]);
+
+}
+
+finally {
+    exit;
 }
 
 
-}
-catch ()
-
-
-
-
-
-
-$pdo = (new PDOFactory())->getPdo();
-$query = $pdo->prepare('SELECT * FROM `User` WHERE `token` = :token');
-$query->bindValue('token', $token, PDO::PARAM_STR);
-$query->setFetchMode(PDO::FETCH_CLASS, User::class);
-if ($query->execute()) {
-    /** @var User $user */
-    $user = $query->fetch();
-    if (!$user) {
-        echo json_encode([
-            'status' => 'error',
-            'message' => 'Invalid Token'
-        ]);
-        exit;
-    }
-
-exit;

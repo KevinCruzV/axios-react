@@ -39,7 +39,7 @@ if ($query->execute()) {
             'nbf' => time(),
             'exp' => time()+3600,
             'username' => $user->getUsername(),
-            'user_id' => $user->getId(),
+            'userid' => $user->getId(),
             'roles'=> [
                 'ADMIN',
                 'NORMAL'
@@ -47,12 +47,13 @@ if ($query->execute()) {
         ];
 
         $jwt = JWT::encode($payload, $key, 'HS256');
-        CookieHelper::setCookie($jwt);
+        CookieHelper::setCookie($jwt, $user->getUsername());
 
 
         echo json_encode([
             'status' => 'success',
             'JWT' => $jwt,
+            'username' => $user->getUsername()
 
         ]);
         exit;

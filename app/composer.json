@@ -1,7 +1,8 @@
 {
     "require": {
         "spomky-labs/jose": "^7.1",
-        "firebase/php-jwt": "^6.1"
+        "firebase/php-jwt": "^6.1",
+      "ext-pdo": "*"
     },
     "autoload": {
         "psr-4": {
